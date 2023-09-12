@@ -5,11 +5,11 @@ import {useNavigation} from "@react-navigation/native";
 import {useAppDispatch, useAppSelector} from "../hooks/hooks";
 import {authenticate} from "../app/slice/userSlice";
 
-export const LoginScreen = () => {
+export const LoginScreen = ({navigation}) => {
     // {navigation}: LoginProps
     const dispatch = useAppDispatch();
     const isAuthenticated = useAppSelector(state => state.user.isAuthenticated)
-    const navigation = useNavigation();
+   // const navigation = useNavigation();
     const [phone, setPhone] = useState('');
     const [password, setPassword] = useState('');
 
@@ -27,8 +27,7 @@ export const LoginScreen = () => {
 
     useEffect(() => {
         if (isAuthenticated) {
-            // @ts-ignore
-            navigation.navigate('MainTabs');
+            navigation.navigate('ScannerScreen');
         }
     }, [isAuthenticated, navigation]);
 

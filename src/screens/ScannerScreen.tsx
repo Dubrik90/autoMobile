@@ -5,13 +5,22 @@ import {useAppDispatch, useAppSelector} from "../hooks/hooks";
 
 import {ModalWindow} from "../components/modalWindow/ModalWindow";
 import {ResponseScannerDataType} from "../types/scanerTypes";
+import {useNavigation} from "@react-navigation/native";
 
-export const ScannerScreen = () => {
-    // {navigation}: ScannerProps
+export const ScannerScreen = ({navigation}: any) => {
     const dispatch = useAppDispatch()
     const scanners = useAppSelector(state => state.scanner.scanners)
     const loading = useAppSelector((state) => state.scanner.loading);
     const [isModalVisible, setModalVisible] = useState(false);
+    const isAuthenticated = useAppSelector(state => state.user.isAuthenticated)
+    //  const navigation = useNavigation();
+
+    useEffect(() => {
+        if (!isAuthenticated) {
+            return navigation.navigate("Login")
+        }
+
+    }, [isAuthenticated, navigation]);
 
     useEffect(() => {
         dispatch(getScanners())
