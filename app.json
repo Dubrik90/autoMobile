@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "my-react-app",
-    "slug": "my-react-app",
+    "name": "autoMobile",
+    "slug": "autoMobile",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
     ]
   },
-  "name": "my-react-app"
+  "name": "autoMobile"
 }
