@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import {View, Text, StyleSheet, Image} from 'react-native';
 import {CarType} from "../../types/types";
 
 interface CarCardProps {
@@ -10,8 +10,8 @@ interface CarCardProps {
     };
 }
 
-export const CarCard: React.FC<CarCardProps> = ({ route }) => {
-    const { car } = route.params;
+export const CarCard: React.FC<CarCardProps> = ({route}) => {
+    const {car} = route.params;
     const {
         company,
         model,
@@ -54,17 +54,15 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: "center",
-        padding: 0,
-        marginBottom: 0,
     },
     image: {
         width: 400,
         height: 400,
         marginBottom: 20
-       // marginRight: 16,
+        // marginRight: 16,
     },
     infoContainer: {
-        flex: 0,
+        flex: 1,
     },
     title: {
         fontSize: 18,

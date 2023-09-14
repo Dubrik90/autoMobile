@@ -1,15 +1,17 @@
 import React from 'react';
-import {Button, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {Provider} from "react-redux";
 import {store} from "./src/app/store/store";
 import {Navigator} from "./src/components/navigator/Navigator";
-import {createNativeStackNavigator} from "@react-navigation/native-stack";
-import {NavigationContainer} from "@react-navigation/native";
+import {ThemeProvider} from "./src/app/theme/provider/ThemeContext";
+
 
 export default function App() {
   return (
       <Provider store={store}>
-        <Navigator />
+          <ThemeProvider>
+              <Navigator />
+          </ThemeProvider>
       </Provider>
   );
 }

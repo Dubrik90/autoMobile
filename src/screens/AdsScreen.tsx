@@ -3,10 +3,13 @@ import {ActivityIndicator, FlatList, Text, View} from "react-native";
 import {useAppDispatch, useAppSelector} from "../hooks/hooks";
 import {getCars} from "../app/slice/carsSlice";
 import {CarDetail} from "../components/carDetail/CarDetail";
+import {useTheme} from "../app/theme/provider/ThemeContext";
+import {darkStyles, lightStyles} from "../style/styles";
 
 
 export const AdsScreen = () => {
     // {navigation}: AdsProps
+    const {theme} = useTheme()
     const dispatch = useAppDispatch();
     const cars = useAppSelector((state) => state.car.cars);
     const loading = useAppSelector((state) => state.car.loading);
@@ -25,30 +28,28 @@ export const AdsScreen = () => {
         dispatch(getCars(currentPage));
     }, [dispatch]);
 
+    const styles = theme === 'light' ? lightStyles : darkStyles;
 
-    if (error) {
-        return (
-            <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-                <Text>{error}</Text>
-            </View>
-        );
-    }
 
     return (
-        <View style={{flex: 1}}>
-            {
-                loading && <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-                    <ActivityIndicator size="large"/>
+        <View style={styles.container}>
+            {error && (
+                <View style={styles.container}>
+                    <Text style={styles.text}>{error}</Text>
                 </View>
-            }
+            )}
+            {loading && (
+                <View style={styles.container}>
+                    <ActivityIndicator size="large" color={theme === 'light' ? 'black' : 'white'}/>
+                </View>
+            )}
             <FlatList
                 data={cars}
                 keyExtractor={(item) => item.id.toString()}
-                renderItem={({item}) => (
-                    <CarDetail car={item}/>
-                )}
+                renderItem={({item}) => <CarDetail car={item}/>}
                 onEndReached={handleLoadMore}
                 onEndReachedThreshold={0.1}
+                style={styles.container}
             />
         </View>
     );

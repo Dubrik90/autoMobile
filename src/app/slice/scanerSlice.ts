@@ -63,7 +63,11 @@ export const getScanners = createAsyncThunk<ResponseScannerDataType[]>(
     }
 );
 
-export const addScanner = createAsyncThunk<ApdateScannerDataType>(
+type AddScannerResType = {
+    status: string
+}
+
+export const addScanner = createAsyncThunk<AddScannerResType, ApdateScannerDataType>(
     'scanner/addScanner',
     async (newScanner, thunkAPI) => {
         const token = await AsyncStorage.getItem('token');
