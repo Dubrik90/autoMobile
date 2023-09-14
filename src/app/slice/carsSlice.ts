@@ -2,6 +2,7 @@ import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import axios from 'axios';
 import {CarType} from "../../types/types";
 import {BASE_URL} from "../../api/api";
+import axiosWithoutToken from "../../api/axiosWithoutToken";
 
 export type PageType = number
 
@@ -48,7 +49,7 @@ export const getCars = createAsyncThunk<CarType[], PageType>(
     async (currentPage, ThunkApi) => {
         const {dispatch, rejectWithValue} = ThunkApi;
         try {
-            const response = await axios.post<CarType[]>(`${BASE_URL}/Parse/FilterCarSearch`, {
+            const response = await axiosWithoutToken.post<CarType[]>(`${BASE_URL}/Parse/FilterCarSearch`, {
                 page: currentPage,
             });
             return response.data;

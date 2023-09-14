@@ -2,11 +2,8 @@ import React, {useState} from 'react';
 import {Pressable, StyleSheet, Switch, Text, View} from "react-native";
 import {useTheme} from "../app/theme/provider/ThemeContext";
 import {darkStyles, lightStyles} from "../style/styles";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import {useAppDispatch, useAppSelector} from "../hooks/hooks";
-import {logoutUser, setUser} from "../app/slice/userSlice";
-import {LoginScreen} from "./LoginScreen";
-import {useNavigation} from "@react-navigation/native";
+import {logoutUser} from "../app/slice/userSlice";
 
 export const UserScreen = ({navigation}) => {
     const {theme, toggleTheme} = useTheme();

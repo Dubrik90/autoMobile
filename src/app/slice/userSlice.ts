@@ -4,6 +4,7 @@ import axios from "axios";
 import {Alert} from "react-native";
 import {AuthenticateProps, BASE_URL} from "../../api/api";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import axiosWithoutToken from "../../api/axiosWithoutToken";
 
 interface UserState {
     user: UserType | null;
@@ -39,12 +40,12 @@ export const authenticate = createAsyncThunk<UserType, AuthenticateProps>(
     async (authData, ThunkApi) => {
         const { dispatch, rejectWithValue } = ThunkApi;
         try {
-            const response = await axios.post<UserType>(`${BASE_URL}/Users/authenticate`, authData);
+            const response = await axiosWithoutToken.post<UserType>(`${BASE_URL}/Users/authenticate`, authData);
 
             dispatch(setUser(response.data));
             const authToken = response.data.token;
 
-            // await AsyncStorage.setItem('token', authToken);
+             await AsyncStorage.setItem('token', authToken);
              await AsyncStorage.setItem('user', JSON.stringify(response.data));
 
             return response.data;
@@ -76,6 +77,7 @@ export const loadUserFromStorage = createAsyncThunk(
 export const logoutUser = createAsyncThunk('user/logoutUser', async (_, { dispatch }) => {
     try {
         await AsyncStorage.removeItem('user');
+       // await AsyncStorage.removeItem('token');
         dispatch(setUser(null));
 
     } catch (error) {
