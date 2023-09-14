@@ -45,6 +45,7 @@ export const LoginScreen = ({navigation}) => {
                     <TextInput
                         style={[styles.text, loginStyle.input]}
                         placeholder="Введите номер телефона"
+                        placeholderTextColor = {styles.text.color}
                         keyboardType="phone-pad"
                         onChangeText={(text) => setPhone(text)}
                         value={phone}
