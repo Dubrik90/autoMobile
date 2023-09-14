@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
-import userReducer from "../slice/userSlice";
+import userReducer, {loadUserFromStorage} from "../slice/userSlice";
 import carsSlice from "../slice/carsSlice";
 import scannerSlice from "../slice/scanerSlice";
 
@@ -12,6 +12,9 @@ export const store = configureStore({
         scanner: scannerSlice
     },
 })
+
+
+store.dispatch(loadUserFromStorage());
 
 export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch

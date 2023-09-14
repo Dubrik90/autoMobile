@@ -1,19 +1,22 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {StyleSheet} from 'react-native';
 import {Provider} from "react-redux";
 import {store} from "./src/app/store/store";
 import {Navigator} from "./src/components/navigator/Navigator";
 import {ThemeProvider} from "./src/app/theme/provider/ThemeContext";
+import {useAppSelector} from "./src/hooks/hooks";
 
 
 export default function App() {
-  return (
-      <Provider store={store}>
-          <ThemeProvider>
-              <Navigator />
-          </ThemeProvider>
-      </Provider>
-  );
+
+
+    return (
+        <Provider store={store}>
+            <ThemeProvider>
+                <Navigator/>
+            </ThemeProvider>
+        </Provider>
+    );
 }
 // function HomeScreen({ navigation }) {
 //     return (
@@ -70,12 +73,11 @@ export default function App() {
 //
 
 
-
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
 });

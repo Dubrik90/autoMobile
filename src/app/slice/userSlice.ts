@@ -44,7 +44,9 @@ export const authenticate = createAsyncThunk<UserType, AuthenticateProps>(
             dispatch(setUser(response.data));
             const authToken = response.data.token;
 
-            await AsyncStorage.setItem('token', authToken);
+            // await AsyncStorage.setItem('token', authToken);
+             await AsyncStorage.setItem('user', JSON.stringify(response.data));
+
             return response.data;
 
         } catch (e) {
@@ -54,3 +56,29 @@ export const authenticate = createAsyncThunk<UserType, AuthenticateProps>(
         }
     },
 );
+
+export const loadUserFromStorage = createAsyncThunk(
+    'user/loadUserFromStorage',
+    async (_, { dispatch }) => {
+        try {
+            const user = await AsyncStorage.getItem('user');
+
+            if (user) {
+                const userData = JSON.parse(user);
+                dispatch(setUser(userData));
+            }
+        } catch (error) {
+            console.error('Ошибка при загрузке данных пользователя из AsyncStorage:', error);
+        }
+    }
+);
+
+export const logoutUser = createAsyncThunk('user/logoutUser', async (_, { dispatch }) => {
+    try {
+        await AsyncStorage.removeItem('user');
+        dispatch(setUser(null));
+
+    } catch (error) {
+        console.error('Ошибка при выходе из системы:', error);
+    }
+});

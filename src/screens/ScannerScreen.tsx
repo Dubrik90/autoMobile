@@ -6,6 +6,8 @@ import {useAppDispatch, useAppSelector} from "../hooks/hooks";
 import {ModalWindow} from "../components/modalWindow/ModalWindow";
 import {ResponseScannerDataType} from "../types/scanerTypes";
 import {useNavigation} from "@react-navigation/native";
+import {useTheme} from "../app/theme/provider/ThemeContext";
+import {darkStyles, lightStyles} from "../style/styles";
 
 export const ScannerScreen = ({navigation}: any) => {
     const dispatch = useAppDispatch()
@@ -13,7 +15,8 @@ export const ScannerScreen = ({navigation}: any) => {
     const loading = useAppSelector((state) => state.scanner.loading);
     const [isModalVisible, setModalVisible] = useState(false);
     const isAuthenticated = useAppSelector(state => state.user.isAuthenticated)
-    //  const navigation = useNavigation();
+    const { theme } = useTheme();
+    const styles = theme === 'light' ? lightStyles : darkStyles;
 
     useEffect(() => {
         if (!isAuthenticated) {
@@ -40,20 +43,20 @@ export const ScannerScreen = ({navigation}: any) => {
     }
 
     const renderItem = ({item}: { item: ResponseScannerDataType }) => (
-        <View style={styles.itemContainer}>
-            <Text style={styles.title}>{item.company}</Text>
+        <View style={scannerStyles.itemContainer}>
+            <Text style={scannerStyles.title}>{item.company}</Text>
             <Text>{`Модель: ${item.model}`}</Text>
             <Text>{`Год выпуска: ${item.yearFrom}-${item.yearTo}`}</Text>
         </View>
     );
 
     return (
-        <View style={styles.container}>
+        <View style={scannerStyles.container}>
             <FlatList
                 data={scanners}
                 keyExtractor={(item) => item.id.toString()}
                 renderItem={renderItem}
-                style={styles.container}
+                style={scannerStyles.container}
             />
             <Pressable
                 style={styles.button}
@@ -69,18 +72,9 @@ export const ScannerScreen = ({navigation}: any) => {
 };
 
 
-const styles = StyleSheet.create({
+const scannerStyles = StyleSheet.create({
     container: {
         flex: 1,
-    },
-    button: {
-        padding: 10,
-        alignSelf: "flex-end",
-        backgroundColor: '#b93b3b',
-        margin: 10,
-        borderRadius: 10,
-        justifyContent: "center",
-        alignItems: "center"
     },
     itemContainer: {
         padding: 16,

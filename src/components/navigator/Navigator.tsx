@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {NavigationContainer, useNavigation} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -6,11 +6,12 @@ import {AdsScreen} from '../../screens/AdsScreen';
 import {ScannerScreen} from '../../screens/ScannerScreen';
 import {LoginScreen} from '../../screens/LoginScreen';
 import {CarCard} from "../carCard/CarCard";
-import {useAppSelector} from "../../hooks/hooks";
+import {useAppDispatch, useAppSelector} from "../../hooks/hooks";
 import {Button, View, Text, Image} from "react-native";
 import {UserScreen} from "../../screens/UserScreen";
 import {useTheme} from "../../app/theme/provider/ThemeContext";
 import {darkStyles, lightStyles} from "../../style/styles";
+import {loadUserFromStorage} from "../../app/slice/userSlice";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -69,7 +70,6 @@ export const Navigator = () => (
 
 export const Info = ({route}) => {
     const { name } = route.params;
-
 
     return (
             <View >

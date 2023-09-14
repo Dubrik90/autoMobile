@@ -22,6 +22,15 @@ export const lightStyles = StyleSheet.create({
         fontWeight: 'bold',
         marginBottom: 8,
     },
+    button: {
+        padding: 10,
+        alignSelf: "flex-end",
+        backgroundColor: '#e51111',
+        margin: 10,
+        borderRadius: 10,
+        justifyContent: "center",
+        alignItems: "center"
+    }
 
 });
 
@@ -47,5 +56,14 @@ export const darkStyles = StyleSheet.create({
         fontWeight: 'bold',
         marginBottom: 8,
     },
+    button: {
+        padding: 10,
+        alignSelf: "flex-end",
+        backgroundColor: '#70e80c',
+        margin: 10,
+        borderRadius: 10,
+        justifyContent: "center",
+        alignItems: "center"
+    }
 
 });
