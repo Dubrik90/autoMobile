@@ -30,7 +30,7 @@ export const CarDetail = ({car}: CarDetailProps) => {
 
     const onPressHandler = () => {
         // @ts-ignore
-        navigation.navigate('CarCard', {car})
+        navigation.navigate('Car', {car})
     }
     const styles = theme === 'light' ? lightStyles : darkStyles;
 

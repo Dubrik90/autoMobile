@@ -16,7 +16,6 @@ export const LoginScreen = ({navigation}) => {
     const { theme } = useTheme();
     const styles = theme === 'light' ? lightStyles : darkStyles;
 
-
     const handleLogin = () => {
         const authData: AuthenticateProps = {
             phone: phone,
@@ -31,7 +30,7 @@ export const LoginScreen = ({navigation}) => {
 
     useEffect(() => {
         if (isAuthenticated) {
-            navigation.navigate('ScannerScreen');
+            navigation.navigate('Scanner');
         }
     }, [isAuthenticated, navigation]);
 
