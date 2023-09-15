@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {ActivityIndicator, FlatList, Text, View} from "react-native";
 import {useAppDispatch, useAppSelector} from "../hooks/hooks";
 import {getCars} from "../app/slice/carsSlice";
@@ -17,11 +17,11 @@ export const AdsScreen = () => {
 
     const [currentPage, setCurrentPage] = useState(1);
 
-    const handleLoadMore = () => {
+    const handleLoadMore = useCallback(() => {
         const nextPage = currentPage + 1;
         setCurrentPage(nextPage);
         dispatch(getCars(nextPage));
-    };
+    }, [currentPage, dispatch]);
 
 
     useEffect(() => {

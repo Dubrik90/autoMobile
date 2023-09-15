@@ -8,7 +8,7 @@ import {darkStyles, lightStyles} from "../../style/styles";
 type CarDetailProps = {
     car: CarType
 }
-export const CarDetail = ({car}: CarDetailProps) => {
+export const CarDetail = React.memo(({car}: CarDetailProps) => {
     const navigation = useNavigation();
     const {theme} = useTheme()
     const {
@@ -56,7 +56,7 @@ export const CarDetail = ({car}: CarDetailProps) => {
 
         </View>
     );
-};
+});
 
 const styleCar = StyleSheet.create({
     container: {
