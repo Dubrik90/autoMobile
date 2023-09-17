@@ -18,8 +18,9 @@ export const MainNavigator = () => {
             <Tab.Navigator
                 screenOptions={{
                     tabBarStyle: {
-                        height: '5%',
+                      //  height: '5%',
                         paddingBottom: 20,
+                        height: 50,
                         backgroundColor: styles.container.backgroundColor,
                         ...styles.text,
                     },

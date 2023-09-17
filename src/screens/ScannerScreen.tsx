@@ -1,8 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {ActivityIndicator, FlatList, Pressable, StyleSheet, Text, View} from "react-native";
-import {getScanners} from "../app/slice/scanerSlice";
-import {useAppDispatch, useAppSelector} from "../hooks/hooks";
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import {useAppSelector} from "../hooks/hooks";
+import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import {ModalWindow} from "../components/modalWindow/ModalWindow";
 import {ResponseScannerDataType} from "../types/scanerTypes";
 import {useTheme} from "../app/theme/provider/ThemeContext";
@@ -10,25 +9,11 @@ import {darkStyles, height, lightStyles} from "../style/styles";
 import {RFValue} from "react-native-responsive-fontsize";
 
 export const ScannerScreen = ({navigation}: any) => {
-    const dispatch = useAppDispatch()
     const scanners = useAppSelector(state => state.scanner.scanners)
     const loading = useAppSelector((state) => state.scanner.loading);
     const [isModalVisible, setModalVisible] = useState(false);
-    const isAuthenticated = useAppSelector(state => state.user.isAuthenticated)
     const {theme} = useTheme();
     const styles = theme === 'light' ? lightStyles : darkStyles;
-
-    useEffect(() => {
-        if (!isAuthenticated) {
-            return navigation.navigate("Login")
-        }
-
-    }, [isAuthenticated, navigation]);
-
-    useEffect(() => {
-        dispatch(getScanners())
-    }, [])
-
     const onPressFunction = () => {
         setModalVisible(true)
     }
@@ -75,6 +60,7 @@ export const ScannerScreen = ({navigation}: any) => {
 const scannerStyles = StyleSheet.create({
     container: {
         flex: 1,
+        position: "relative"
     },
     itemContainer: {
         padding: wp('4%'),

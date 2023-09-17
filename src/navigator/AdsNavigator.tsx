@@ -13,6 +13,7 @@ export const AdsNavigator = () => (
             component={AdsScreen}
             options={{
                 headerShown: false,
+                title: ''
             }}
         />
         <AdsStack.Screen

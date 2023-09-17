@@ -5,6 +5,7 @@ import {Alert} from "react-native";
 import {AuthenticateProps, BASE_URL} from "../../api/api";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axiosWithoutToken from "../../api/axiosWithoutToken";
+import {getScanners} from "./scanerSlice";
 
 interface UserState {
     user: UserType | null;
@@ -47,6 +48,7 @@ export const authenticate = createAsyncThunk<UserType, AuthenticateProps>(
 
              await AsyncStorage.setItem('token', authToken);
              await AsyncStorage.setItem('user', JSON.stringify(response.data));
+            dispatch(getScanners())
 
             return response.data;
 
