@@ -49,7 +49,7 @@ export const AdsScreen = () => {
                 renderItem={({item}) => <CarDetail car={item}/>}
                 onEndReached={handleLoadMore}
                 onEndReachedThreshold={0.1}
-                style={styles.container}
+              //  style={styles.container}
             />
         </View>
     );

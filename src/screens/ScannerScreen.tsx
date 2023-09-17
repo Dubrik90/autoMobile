@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from 'react';
-import {ActivityIndicator, Alert, FlatList, Pressable, StyleSheet, Text, View} from "react-native";
+import {ActivityIndicator, FlatList, Pressable, StyleSheet, Text, View} from "react-native";
 import {getScanners} from "../app/slice/scanerSlice";
 import {useAppDispatch, useAppSelector} from "../hooks/hooks";
-
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import {ModalWindow} from "../components/modalWindow/ModalWindow";
 import {ResponseScannerDataType} from "../types/scanerTypes";
-import {useNavigation} from "@react-navigation/native";
 import {useTheme} from "../app/theme/provider/ThemeContext";
-import {darkStyles, lightStyles} from "../style/styles";
+import {darkStyles, height, lightStyles} from "../style/styles";
+import {RFValue} from "react-native-responsive-fontsize";
 
 export const ScannerScreen = ({navigation}: any) => {
     const dispatch = useAppDispatch()
@@ -15,7 +15,7 @@ export const ScannerScreen = ({navigation}: any) => {
     const loading = useAppSelector((state) => state.scanner.loading);
     const [isModalVisible, setModalVisible] = useState(false);
     const isAuthenticated = useAppSelector(state => state.user.isAuthenticated)
-    const { theme } = useTheme();
+    const {theme} = useTheme();
     const styles = theme === 'light' ? lightStyles : darkStyles;
 
     useEffect(() => {
@@ -77,12 +77,12 @@ const scannerStyles = StyleSheet.create({
         flex: 1,
     },
     itemContainer: {
-        padding: 16,
+        padding: wp('4%'),
         borderBottomWidth: 1,
         borderBottomColor: '#ccc',
     },
     title: {
-        fontSize: 18,
+        fontSize: RFValue(18, height),
         fontWeight: 'bold',
     },
 });

@@ -1,7 +1,9 @@
 import React from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
 import {CarType} from "../../types/types";
-
+import {RFValue} from "react-native-responsive-fontsize";
+import {height} from "../../style/styles";
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 interface CarCardProps {
     route: {
         params: {
@@ -56,17 +58,17 @@ const styles = StyleSheet.create({
         justifyContent: "center",
     },
     image: {
-        width: 400,
-        height: 400,
-        marginBottom: 20
-        // marginRight: 16,
+        width: wp('100'),
+        height: hp('40'),
+        marginBottom: hp('2'),
+
     },
     infoContainer: {
         flex: 1,
     },
     title: {
-        fontSize: 18,
+        fontSize: RFValue(18, height),
         fontWeight: 'bold',
-        marginBottom: 8,
+        marginBottom: hp('1'),
     },
 });

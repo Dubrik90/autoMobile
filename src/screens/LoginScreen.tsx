@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Keyboard, StyleSheet, Text, TextInput, TouchableWithoutFeedback, View} from 'react-native';
 import {AuthenticateProps} from "../api/api";
-import {useNavigation} from "@react-navigation/native";
+import {heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import {useAppDispatch, useAppSelector} from "../hooks/hooks";
 import {authenticate} from "../app/slice/userSlice";
 import {useTheme} from "../app/theme/provider/ThemeContext";
-import {darkStyles, lightStyles} from "../style/styles";
+import {darkStyles, height, lightStyles} from "../style/styles";
+import {RFValue} from "react-native-responsive-fontsize";
 
 export const LoginScreen = ({navigation}) => {
     // {navigation}: LoginProps
@@ -13,7 +14,7 @@ export const LoginScreen = ({navigation}) => {
     const isAuthenticated = useAppSelector(state => state.user.isAuthenticated)
     const [phone, setPhone] = useState('');
     const [password, setPassword] = useState('');
-    const { theme } = useTheme();
+    const {theme} = useTheme();
     const styles = theme === 'light' ? lightStyles : darkStyles;
 
     const handleLogin = () => {
@@ -35,7 +36,6 @@ export const LoginScreen = ({navigation}) => {
     }, [isAuthenticated, navigation]);
 
 
-
     return (
         <View style={[styles.container, loginStyle.container]}>
             <TouchableWithoutFeedback onPress={handleEmptyAreaPress}>
@@ -44,7 +44,7 @@ export const LoginScreen = ({navigation}) => {
                     <TextInput
                         style={[styles.text, loginStyle.input]}
                         placeholder="Введите номер телефона"
-                        placeholderTextColor = {styles.text.color}
+                        placeholderTextColor={styles.text.color}
                         keyboardType="phone-pad"
                         onChangeText={(text) => setPhone(text)}
                         value={phone}
@@ -57,7 +57,7 @@ export const LoginScreen = ({navigation}) => {
                     <TextInput
                         style={loginStyle.input}
                         placeholder="Введите пароль"
-                        placeholderTextColor = {styles.text.color}
+                        placeholderTextColor={styles.text.color}
                         secureTextEntry
                         onChangeText={(text) => setPassword(text)}
                         value={password}
@@ -69,24 +69,24 @@ export const LoginScreen = ({navigation}) => {
     );
 };
 
-const loginStyle = StyleSheet.create({
+
+export const loginStyle = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 16,
+        padding: wp('4%'),
         justifyContent: 'center',
     },
     label: {
         textAlign: 'left',
-        fontSize: 16,
-        marginBottom: 8,
+        fontSize: RFValue(16, height),
+        marginBottom: hp('1%'),
     },
     input: {
         width: '100%',
-        height: 40,
+        height: hp('5%'),
         borderColor: 'gray',
         borderWidth: 1,
-        marginBottom: 16,
-        paddingHorizontal: 8,
-
+        marginBottom: hp('2%'),
+        paddingHorizontal: wp('2%'),
     },
 });

@@ -60,11 +60,9 @@ export const CarDetail = React.memo(({car}: CarDetailProps) => {
 
 const styleCar = StyleSheet.create({
     container: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        borderWidth: 1,
         borderColor: 'gray',
-        padding: 16,
+        paddingLeft: 16,
+        paddingRight: 16,
         marginBottom: 16,
     },
 });

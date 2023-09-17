@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {Pressable, StyleSheet, Switch, Text, View} from "react-native";
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import {useTheme} from "../app/theme/provider/ThemeContext";
 import {darkStyles, lightStyles} from "../style/styles";
 import {useAppDispatch, useAppSelector} from "../hooks/hooks";
@@ -55,11 +56,12 @@ const userStyles = StyleSheet.create({
     switch: {
         flexDirection: "row",
         alignItems: "center",
-        gap: 20
+        marginHorizontal: wp('4%'),
     },
     btn: {
-        width: 150,
-        alignSelf: "flex-start"
+        width: wp('30%'),
+        alignSelf: "flex-start",
+        marginVertical: hp('2%'),
     }
 })
 

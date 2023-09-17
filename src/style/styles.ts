@@ -1,33 +1,37 @@
-import { StyleSheet } from 'react-native';
+import {Dimensions, StyleSheet} from 'react-native';
+import {RFValue} from 'react-native-responsive-fontsize';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+
+export const {height} = Dimensions.get('screen');
 
 export const lightStyles = StyleSheet.create({
     container: {
-         flex: 1,
+        flex: 1,
         backgroundColor: '#fff',
     },
     text: {
         color: '#000',
     },
     image: {
-        width: 100,
-        height: 100,
-        marginRight: 16,
+        maxWidth: wp('100%'),
+        height: hp('30%'),
+        objectFit: "cover",
     },
     infoContainer: {
         flex: 1,
     },
     title: {
         color: 'black',
-        fontSize: 18,
+        fontSize: RFValue(18, height),
         fontWeight: 'bold',
-        marginBottom: 8,
+        marginBottom: hp('0.5%'),
     },
     button: {
-        padding: 10,
+        padding: wp('1%'),
         alignSelf: "flex-end",
         backgroundColor: '#e51111',
-        margin: 10,
-        borderRadius: 10,
+        margin: wp('1%'),
+        borderRadius: wp('1%'),
         justifyContent: "center",
         alignItems: "center"
     }
@@ -43,27 +47,26 @@ export const darkStyles = StyleSheet.create({
         color: '#fff',
     },
     image: {
-        width: 100,
-        height: 100,
-        marginRight: 16,
+        maxWidth: wp('100%'),
+        height: hp('30%'),
+        objectFit: "cover",
     },
     infoContainer: {
         flex: 1,
     },
     title: {
         color: 'white',
-        fontSize: 18,
+        fontSize: RFValue(18, height),
         fontWeight: 'bold',
-        marginBottom: 8,
+        marginBottom: hp('0.5%'),
     },
     button: {
-        padding: 10,
+        padding: wp('1%'),
         alignSelf: "flex-end",
         backgroundColor: '#70e80c',
-        margin: 10,
-        borderRadius: 10,
+        margin: wp('1%'),
+        borderRadius: wp('1%'),
         justifyContent: "center",
         alignItems: "center"
     }
-
 });
