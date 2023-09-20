@@ -9,9 +9,9 @@ import {
     Platform,
     StyleSheet,
 } from 'react-native';
-import { ApdateScannerDataType } from '../../types/scanerTypes';
-import { useAppDispatch } from '../../hooks/hooks';
-import { addScanner } from '../../app/slice/scanerSlice';
+import { ApdateScannerDataType } from '../types/scanerTypes';
+import { useAppDispatch } from '../hooks/hooks';
+import { addScanner } from '../app/slice/scanerSlice';
 import {
     widthPercentageToDP as wp,
     heightPercentageToDP as hp,

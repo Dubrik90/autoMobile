@@ -1,15 +1,18 @@
 import React from 'react';
 import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
-import {CarType} from "../../types/types";
+import {CarType} from "../types/types";
 import {useNavigation} from "@react-navigation/native";
-import {useTheme} from "../../app/theme/provider/ThemeContext";
-import {darkStyles, lightStyles} from "../../style/styles";
+import {useTheme} from "../app/theme/provider/ThemeContext";
+import {darkStyles, lightStyles} from "../style/styles";
+import {useAppDispatch} from "../hooks/hooks";
+import {setActiveCar} from "../app/slice/carsSlice";
 
 type CarDetailProps = {
     car: CarType
 }
 export const CarDetail = React.memo(({car}: CarDetailProps) => {
     const navigation = useNavigation();
+    const dispatch = useAppDispatch()
     const {theme} = useTheme()
     const {
         company,
@@ -31,6 +34,7 @@ export const CarDetail = React.memo(({car}: CarDetailProps) => {
     const onPressHandler = () => {
         // @ts-ignore
         navigation.navigate('Car', {car})
+        dispatch(setActiveCar(car))
     }
     const styles = theme === 'light' ? lightStyles : darkStyles;
 

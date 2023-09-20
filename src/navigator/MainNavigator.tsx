@@ -32,7 +32,10 @@ export const MainNavigator = () => {
                 <Tab.Screen
                     name="AdsMain"
                     component={AdsNavigator}
-                    options={{title: 'Объявления'}}
+                    options={{
+                        headerShown: false,
+                        title: 'Объявления'
+                }}
                 />
                 <Tab.Screen
                     name="Scanner"

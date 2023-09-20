@@ -1,12 +1,14 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {ActivityIndicator, FlatList, Pressable, StyleSheet, Text, View} from "react-native";
-import {useAppSelector} from "../hooks/hooks";
+import {useAppDispatch, useAppSelector} from "../hooks/hooks";
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
-import {ModalWindow} from "../components/modalWindow/ModalWindow";
+import {ModalWindow} from "../components/ModalWindow";
 import {ResponseScannerDataType} from "../types/scanerTypes";
 import {useTheme} from "../app/theme/provider/ThemeContext";
 import {darkStyles, height, lightStyles} from "../style/styles";
 import {RFValue} from "react-native-responsive-fontsize";
+import {getCars} from "../app/slice/carsSlice";
+import {getScanners} from "../app/slice/scanerSlice";
 
 export const ScannerScreen = ({navigation}: any) => {
     const scanners = useAppSelector(state => state.scanner.scanners)
@@ -14,6 +16,12 @@ export const ScannerScreen = ({navigation}: any) => {
     const [isModalVisible, setModalVisible] = useState(false);
     const {theme} = useTheme();
     const styles = theme === 'light' ? lightStyles : darkStyles;
+    const dispatch = useAppDispatch();
+
+    useEffect(() => {
+        dispatch(getScanners())
+    }, [dispatch]);
+
     const onPressFunction = () => {
         setModalVisible(true)
     }

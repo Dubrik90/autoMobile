@@ -1,8 +1,8 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {ActivityIndicator, FlatList, Text, View} from "react-native";
+import {ActivityIndicator, FlatList, StyleSheet, Text, View} from "react-native";
 import {useAppDispatch, useAppSelector} from "../hooks/hooks";
 import {getCars} from "../app/slice/carsSlice";
-import {CarDetail} from "../components/carDetail/CarDetail";
+import {CarDetail} from "../components/CarDetail";
 import {useTheme} from "../app/theme/provider/ThemeContext";
 import {darkStyles, lightStyles} from "../style/styles";
 
@@ -43,16 +43,24 @@ export const AdsScreen = () => {
                     <ActivityIndicator size="large" color={theme === 'light' ? 'black' : 'white'}/>
                 </View>
             )}
+            <View style={AdsStyles.block}>
+                <Text style={styles.titleMain}>Объявления</Text>
+            </View>
             <FlatList
                 data={cars}
                 keyExtractor={(item) => item.id.toString()}
                 renderItem={({item}) => <CarDetail car={item}/>}
                 onEndReached={handleLoadMore}
                 onEndReachedThreshold={0.1}
-              //  style={styles.container}
+                //  style={styles.container}
             />
         </View>
     );
 };
 
 
+const AdsStyles = StyleSheet.create({
+    block: {
+        padding: 10
+    }
+})

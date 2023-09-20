@@ -1,7 +1,5 @@
-import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
-import axios from 'axios';
+import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {CarType} from "../../types/types";
-import {BASE_URL} from "../../api/api";
 import axiosWithoutToken from "../../api/axiosWithoutToken";
 
 export type PageType = number
@@ -11,6 +9,7 @@ interface carState {
     loading: boolean,
     error: string | null,
     currentPage: number,
+    activeCar: CarType | null
 }
 
 const initialState: carState = {
@@ -18,12 +17,17 @@ const initialState: carState = {
     loading: false,
     error: null,
     currentPage: 1,
+    activeCar: null
 };
 
 const carSlice = createSlice({
     name: 'car',
     initialState,
-    reducers: {},
+    reducers: {
+        setActiveCar: (state, action: PayloadAction<CarType>) => {
+            state.activeCar = action.payload
+        }
+    },
     extraReducers: (builder) => {
         builder
             .addCase(getCars.pending, (state) => {
@@ -41,7 +45,7 @@ const carSlice = createSlice({
             });
     },
 });
-
+export const {setActiveCar} = carSlice.actions
 export default carSlice.reducer;
 
 export const getCars = createAsyncThunk<CarType[], PageType>(
@@ -49,7 +53,7 @@ export const getCars = createAsyncThunk<CarType[], PageType>(
     async (currentPage, ThunkApi) => {
         const {dispatch, rejectWithValue} = ThunkApi;
         try {
-            const response = await axiosWithoutToken.post<CarType[]>(`${BASE_URL}/Parse/FilterCarSearch`, {
+            const response = await axiosWithoutToken.post<CarType[]>(`Parse/FilterCarSearch`, {
                 page: currentPage,
             });
             return response.data;

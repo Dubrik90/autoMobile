@@ -25,6 +25,14 @@ export const lightStyles = StyleSheet.create({
         fontSize: RFValue(18, height),
         fontWeight: 'bold',
         marginBottom: hp('0.5%'),
+        textAlign: "center",
+    },
+    titleMain: {
+        color: 'black',
+        fontSize: RFValue(24, height),
+        fontWeight: 'bold',
+        marginBottom: hp('0.5%'),
+        textAlign: "center",
     },
     button: {
         padding: wp('1%'),
@@ -35,7 +43,6 @@ export const lightStyles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center"
     }
-
 });
 
 export const darkStyles = StyleSheet.create({
@@ -59,6 +66,13 @@ export const darkStyles = StyleSheet.create({
         fontSize: RFValue(18, height),
         fontWeight: 'bold',
         marginBottom: hp('0.5%'),
+    },
+    titleMain: {
+        color: '#fff',
+        fontSize: RFValue(24, height),
+        fontWeight: 'bold',
+        marginBottom: hp('0.5%'),
+        textAlign: "center",
     },
     button: {
         padding: wp('1%'),

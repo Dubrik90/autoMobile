@@ -32,24 +32,23 @@ const userSlice = createSlice({
     },
 });
 
-export const { setUser } = userSlice.actions;
+export const {setUser} = userSlice.actions;
 
 export default userSlice.reducer;
 
 export const authenticate = createAsyncThunk<UserType, AuthenticateProps>(
     'login/authenticate',
     async (authData, ThunkApi) => {
-        const { dispatch, rejectWithValue } = ThunkApi;
+        const {dispatch, rejectWithValue} = ThunkApi;
         try {
-            const response = await axiosWithoutToken.post<UserType>(`${BASE_URL}/Users/authenticate`, authData);
+            const response = await axiosWithoutToken.post<UserType>(`/Users/authenticate`, authData);
 
             dispatch(setUser(response.data));
             const authToken = response.data.token;
 
-             await AsyncStorage.setItem('token', authToken);
-             await AsyncStorage.setItem('user', JSON.stringify(response.data));
-            dispatch(getScanners())
-
+            await AsyncStorage.setItem('token', authToken);
+            await AsyncStorage.setItem('user', JSON.stringify(response.data));
+             
             return response.data;
 
         } catch (e) {
@@ -62,7 +61,7 @@ export const authenticate = createAsyncThunk<UserType, AuthenticateProps>(
 
 export const loadUserFromStorage = createAsyncThunk(
     'user/loadUserFromStorage',
-    async (_, { dispatch }) => {
+    async (_, {dispatch}) => {
         try {
             const user = await AsyncStorage.getItem('user');
 
@@ -76,10 +75,10 @@ export const loadUserFromStorage = createAsyncThunk(
     }
 );
 
-export const logoutUser = createAsyncThunk('user/logoutUser', async (_, { dispatch }) => {
+export const logoutUser = createAsyncThunk('user/logoutUser', async (_, {dispatch}) => {
     try {
         await AsyncStorage.removeItem('user');
-       // await AsyncStorage.removeItem('token');
+        // await AsyncStorage.removeItem('token');
         dispatch(setUser(null));
 
     } catch (error) {

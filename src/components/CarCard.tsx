@@ -1,8 +1,8 @@
 import React from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
-import {CarType} from "../../types/types";
+import {CarType} from "../types/types";
 import {RFValue} from "react-native-responsive-fontsize";
-import {height} from "../../style/styles";
+import {height} from "../style/styles";
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 interface CarCardProps {
     route: {
@@ -15,6 +15,7 @@ interface CarCardProps {
 export const CarCard: React.FC<CarCardProps> = ({route}) => {
     const {car} = route.params;
     const {
+        id,
         company,
         model,
         year,

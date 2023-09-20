@@ -47,7 +47,7 @@ export const getScanners = createAsyncThunk<ResponseScannerDataType[]>(
     'scanner/getScanners',
     async (_, thunkAPI) => {
         try {
-            const response = await axiosWithToken.post<ResponseScannerDataType[]>(`${BASE_URL}/Parse/GetUserScanners`);
+            const response = await axiosWithToken.post<ResponseScannerDataType[]>(`/Parse/GetUserScanners`);
             return response.data;
         } catch (error) {
             throw error;
@@ -63,7 +63,7 @@ export const addScanner = createAsyncThunk<AddScannerResType, ApdateScannerDataT
     'scanner/addScanner',
     async (newScanner, thunkAPI) => {
         try {
-            const response = await axiosWithToken.post<AddScannerResType>(`${BASE_URL}/Parse/SetScanner`, newScanner);
+            const response = await axiosWithToken.post<AddScannerResType>(`/Parse/SetScanner`, newScanner);
             thunkAPI.dispatch(getScanners())
             return response.data;
         } catch (error) {
