@@ -43,9 +43,6 @@ export const AdsScreen = () => {
                     <ActivityIndicator size="large" color={theme === 'light' ? 'black' : 'white'}/>
                 </View>
             )}
-            <View style={AdsStyles.block}>
-                <Text style={styles.titleMain}>Объявления</Text>
-            </View>
             <FlatList
                 data={cars}
                 keyExtractor={(item) => item.id.toString()}
@@ -59,8 +56,3 @@ export const AdsScreen = () => {
 };
 
 
-const AdsStyles = StyleSheet.create({
-    block: {
-        padding: 10
-    }
-})

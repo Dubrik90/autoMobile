@@ -24,6 +24,7 @@ export const MainNavigator = () => {
                         backgroundColor: styles.container.backgroundColor,
                         ...styles.text,
                     },
+                    headerShown: false,
                     tabBarLabelStyle: styles.text,
                     headerStyle: {backgroundColor: styles.container.backgroundColor},
                     headerTitleStyle: styles.text,
@@ -33,7 +34,7 @@ export const MainNavigator = () => {
                     name="AdsMain"
                     component={AdsNavigator}
                     options={{
-                        headerShown: false,
+                     //   headerShown: false,
                         title: 'Объявления'
                 }}
                 />

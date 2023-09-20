@@ -17,8 +17,7 @@ export const AdsNavigator = () => {
                 name="Ads"
                 component={AdsScreen}
                 options={{
-                    headerShown: false,
-                    // title: ''
+                    title: 'Объявления'
                 }}
             />
             <AdsStack.Screen
